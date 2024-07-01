@@ -1,0 +1,20 @@
+{
+	"manifest_version": 3,
+	"name": "YtAutoSkipAd",
+	"version": "1.0",
+	"description": "Auto Youtube ad skipper. Dont worry about pressing the skip button anymore.",
+	"icons": {},
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": ["*://www.youtube.com/watch"],
+			"js": ["htmlcomponents.js", "background.js", "ytautoskipad.js", "desactivate.js"]
+		}
+	],
+	"background": {
+		"service_worker": "background.js"
+	},
+	"permissions": ["activeTab", "scripting"]
+}

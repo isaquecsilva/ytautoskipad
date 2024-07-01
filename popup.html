@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+	<title>YtAutoSkipAd</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			font-family: 'Roboto', Arial;
+		}
+
+		#container {
+			display: flex;
+			flex-direction: column;	
+			align-items: center;
+			justify-content: center;
+			background: white;
+			width: 400px;
+			height: 300px;
+			overflow-x: hidden;
+		}
+
+		section, section div {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}		
+
+		h1, h4 {
+			color: black;
+			margin: 8px;
+			font-size: 2.2em;
+		}
+
+		button {
+			height: 60px;
+			width: 24vw;
+			min-width: 22vw;
+			max-width: 30vw;
+			font-size: 2em;
+			font-weight: bold;
+			background-color: dodgerblue;
+			border: none;
+			color: white;
+			border-radius: 4px;
+			padding: 0px 12px;
+			margin-top: 16px;
+		}
+
+		button:active {
+			transform: scale(0.98);
+		}
+
+		.error {
+			background-color: red;
+			border-radius: 4px;
+			color: white;
+			max-width: 60vw;
+			word-wrap: break-word;
+			padding: 12px;
+			font-weight: 600;
+			margin: 16px 8px 0px 8px;
+			transition: 0.5s;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<section>
+			<div>
+				<h4>Skipped Ads:</h4>
+				<h1>0</h1>
+			</div>
+		</section>
+
+		<section>
+			<button>
+				Start
+			</button>
+		</section>
+	<script type="text/javascript" src="htmlcomponents.js"></script>
+</body>
+</html>

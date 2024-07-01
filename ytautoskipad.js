@@ -1,4 +1,7 @@
 function autoSkipYtAd() {
+	console.log(window.ytobserver)
+	if (window.ytobserver) return;
+
 	const videoContainer = document.querySelector('div[aria-label="Player de vídeo do YouTube"]')
 
 	async function callback(mutationList, observer) {
@@ -7,9 +10,13 @@ function autoSkipYtAd() {
 		for (const mutation of mutationList) {
 			if (mutation.type == 'childList') {
 				const skipButton = document.querySelector('button[id*="skip-button"')
-				console.log(skipButton)
 				skipButton?.click()
+
+				chrome.runtime.sendMessage({
+					plusOne: true,
+				})
 			}
+
 		}
 	}
 
@@ -23,3 +30,6 @@ function autoSkipYtAd() {
 		observer,
 	}
 }
+
+autoSkipYtAd()
+console.log('skipper activated')
