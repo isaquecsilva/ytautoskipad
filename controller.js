@@ -5,18 +5,26 @@ async function getCurrentTab() {
 }
 
 async function loadConfiguration() {
-	let storage = await chrome.storage.local.get(["ytautoskipad_active"])
+	let storage = await chrome.storage.local.get(["ytautoskipad_active", "ytautoskipad_imediateskip"])
+
+	console.log(storage)
 
 	if (storage && storage.ytautoskipad_active) {
 		let button = document.querySelector('button')
 		button.innerText = 'Stop'
 		button.style.backgroundColor = 'red'
 	}
+
+	if (storage && storage.ytautoskipad_imediateskip == false) {
+		let imediateSkip = document.querySelector('input[type=checkbox]')
+		imediateSkip.checked = false;
+	}
 }
 
 window.onload = loadConfiguration
 
 const button = document.querySelector('button')
+const imediateSkip = document.querySelector('input[type=checkbox]')
 
 button.onclick = async (event) => {
 	const el = event.target;
@@ -40,4 +48,13 @@ button.onclick = async (event) => {
 			await chrome.storage.local.set({ytautoskipad_active: false})
 			break;
 	}
+}
+
+imediateSkip.onclick = async (event) => {
+	let state = imediateSkip.checked;
+	console.log('checkbox', state)
+
+	await chrome.storage.local.set({
+		ytautoskipad_imediateskip: state,
+	})
 }

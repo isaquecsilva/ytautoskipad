@@ -20,8 +20,10 @@ async function checkForSkippingAd(seconds) {
 	}
 
 	while (true) {
+		var {ytautoskipad_imediateskip: imediateState} = await storage.get(["ytautoskipad_imediateskip"]);
+		let waitTime = imediateState ? 0 : 6
+	
 		const { href: url } = window.location;
-
 		state = await storage.get(["ytautoskipad_active"])
 
 		if (state.ytautoskipad_active != true) {
@@ -33,6 +35,10 @@ async function checkForSkippingAd(seconds) {
 			const skipButton = document.querySelector('button[id*="skip-button"')
 
 			if (skipButton) {
+				console.log('wait_time', waitTime)
+
+				if (waitTime) await window.sleep(waitTime)
+
 				console.log('skipping...')
 				skipButton?.click()
 			}
