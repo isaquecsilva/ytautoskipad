@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "YtAutoSkipAd",
-	"version": "1.0",
+	"version": "1.1",
 	"description": "Auto Youtube ad skipper. Dont worry about pressing the skip button anymore.",
 	"icons": {},
 	"action": {
@@ -9,7 +9,7 @@
 	},
 	"content_scripts": [
 		{
-			"matches": ["*://*/*"],
+			"matches": ["*://www.youtube.com/watch"],
 			"js": ["controller.js", "skipper.js", "background.js"]
 		}
 	],

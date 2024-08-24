@@ -20,9 +20,9 @@ async function checkForSkippingAd(seconds) {
 	}
 
 	while (true) {
-		var {ytautoskipad_imediateskip: imediateState} = await storage.get(["ytautoskipad_imediateskip"]);
+		let {ytautoskipad_imediateskip: imediateState} = await storage.get(["ytautoskipad_imediateskip"]);
 		let waitTime = imediateState ? 0 : 6
-	
+
 		const { href: url } = window.location;
 		state = await storage.get(["ytautoskipad_active"])
 
@@ -32,17 +32,22 @@ async function checkForSkippingAd(seconds) {
 		}
 
 		if (url.includes(window.ytautoskipadendpoint)) {
-			const skipButton = document.querySelector('button[id*="skip-button"')
+			// getting element that indicates an ad has started playing.
+			const previewAdBtn = document.querySelector('div[id*="preview-ad"')
 
-			if (skipButton) {
+			if (previewAdBtn) {
 				console.log('wait_time', waitTime)
 
 				if (waitTime) await window.sleep(waitTime)
 
 				console.log('skipping...')
-				skipButton?.click()
+
+				// as click on skip button are not working anymore, probably 
+				// cause its an unstrusted click we acellerate the video ad.
+				let video = document.querySelector('video')
+				video.currentTime = video.duration;
 			}
-			else console.log('skip button not found')
+			else console.log('no ad')
 		}
 		else {
 			console.log('invalid_url', location?.href)
